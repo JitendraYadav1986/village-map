@@ -1,0 +1,126 @@
+<form id="myForm" action="https://script.google.com/macros/s/AKfycbx-ycUxeTdxtGRXpQHxoQfP-5t6sjFOVcGDCvkB1Opdlg7_W8gflFVGiitaHPmzykik/exec" method="post">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> VILLAGE MAPPING FORM </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50; /* Green background color */
+            color: yellow; /* White font color */
+            margin: 0;
+            padding: 20px;
+        }
+
+        form {
+            background-color: blue;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: calc(50% - 6px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1> ALWAR VILLAGE MAPPING FORM</h1>
+    <div id="successMessage"></div>
+    <form action="submit.php" method="post">
+        <label for="block">Block Name:</label>
+        <input type="text" id="block" name="block" required><br><br>
+
+        <label for="tehsil">Tehsil Name:</label>
+        <input type="text" id="tehsil" name="tehsil" required><br><br>
+
+        <label for="institute">Institute Name:</label>
+        <input type="text" id="institute" name="institute" required><br><br>
+
+        <label for="aiCentre">AI Centre Name:</label>
+        <input type="text" id="aiCentre" name="aiCentre" required><br><br>
+
+        <label for="type">Type of Institute:</label>
+        <select id="type" name="type">
+            <option value="FVH">FVH</option>
+            <option value="VH">VH</option>
+            <option value="SC">SC</option>
+        </select><br><br>
+
+        <label for="iommsId">IOMMS ID:</label>
+        <input type="text" id="iommsId" name="iommsId"  required><br><br>
+
+        <label for="naipId">NAIP ID:</label>
+        <input type="text" id="naipId" name="naipId" required><br><br>
+
+        <!-- Village Name and Village Code fields -->
+        <script>
+            for (let i = 1; i <= 10; i++) {
+                document.write(`
+                    <label for="villageName${i}">Village Name ${i}:</label>
+                    <input type="text" id="villageName${i}" name="villageName${i}" style="margin-bottom: 5px;">
+
+                    <input type="text" id="villageCode${i}" name="villageCode${i}" placeholder="Village Code ${i}" style="margin-bottom: 10px;"><br>
+                `);
+            }
+        </script>
+
+        <input type="submit" value="Submit">
+      
+    </form>
+</body>
+</html>
+
+</form>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+      
+      var formData = new FormData(this);
+      fetch(this.getAttribute('action'), {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+        console.log('Form submitted:', response);
+        // Display success message in an alert
+        alert('Form submitted successfully!');
+        // Reset the form after successful submission
+        document.getElementById('myForm').reset();
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+  
